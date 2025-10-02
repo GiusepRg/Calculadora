@@ -1,0 +1,141 @@
+classDiagram
+    %% Interfaces
+    class Calculator {
+        <<interface>>
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+
+    %% Operaciones concretas
+    class Addition {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+    
+    class Subtraction {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+    
+    class Multiplication {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+    
+    class Division {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+    
+    class SquareRoot {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+    
+    class Percentage {
+        +calculate(double... operands) double
+        +getOperationName() String
+    }
+
+    %% Factory
+    class OperationFactory {
+        -Map~String, Calculator~ operations
+        +registerOperation(String, Calculator) void
+        +getOperation(String) Calculator
+        +hasOperation(String) boolean
+        -registerDefaultOperations() void
+    }
+
+    %% Memory Manager
+    class MemoryManager {
+        -double memory
+        +clear() void
+        +add(double) void
+        +subtract(double) void
+        +recall() double
+        +store(double) void
+        +isEmpty() boolean
+    }
+
+    %% Service
+    class CalculatorService {
+        -OperationFactory operationFactory
+        -MemoryManager memoryManager
+        +executeOperation(String, double...) double
+        +isOperationSupported(String) boolean
+        +memoryClear() void
+        +memoryAdd(double) void
+        +memorySubtract(double) void
+        +memoryRecall() double
+        +memoryStore(double) void
+    }
+
+    %% Parser
+    class InputParser {
+        +parse(String) ParsedCommand
+    }
+    
+    class ParsedCommand {
+        -CommandType type
+        -String operation
+        -double[] operands
+        +getType() CommandType
+        +getOperation() String
+        +getOperands() double[]
+    }
+
+    %% Formatter
+    class OutputFormatter {
+        +formatResult(double) String
+        +formatMemory(double) String
+        +formatError(String) String
+        +formatWelcome() String
+        +formatHelp() String
+        +formatGoodbye() String
+    }
+
+    %% CLI
+    class CLIInterface {
+        -CalculatorService calculatorService
+        -InputParser parser
+        -OutputFormatter formatter
+        -Scanner scanner
+        +start() void
+        -handleCalculation(ParsedCommand) void
+        -handleMemoryCommand(ParsedCommand) void
+    }
+
+    %% Main
+    class Main {
+        +main(String[]) void
+    }
+
+    %% Relaciones
+    Calculator <|.. Addition : implements
+    Calculator <|.. Subtraction : implements
+    Calculator <|.. Multiplication : implements
+    Calculator <|.. Division : implements
+    Calculator <|.. SquareRoot : implements
+    Calculator <|.. Percentage : implements
+    
+    OperationFactory o-- Calculator : manages
+    CalculatorService --> OperationFactory : uses
+    CalculatorService --> MemoryManager : uses
+    
+    CLIInterface --> CalculatorService : uses
+    CLIInterface --> InputParser : uses
+    CLIInterface --> OutputFormatter : uses
+    
+    InputParser --> ParsedCommand : creates
+    
+    Main ..> OperationFactory : creates
+    Main ..> MemoryManager : creates
+    Main ..> CalculatorService : creates
+    Main ..> CLIInterface : creates
+
+    %% Notas de SOLID
+    note for Calculator "ISP: Interfaz pequeña y específica"
+    note for Addition "SRP: Una clase, una operación"
+    note for OperationFactory "OCP: Abierto para extensión"
+    note for CalculatorService "DIP: Depende de abstracciones"
+    note for CLIInterface "SRP: Solo maneja UI"
