@@ -1,0 +1,77 @@
+<!-- assets/banner.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Banner Calculadora Pro - Giuseppe, Juliana y Tarazona">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5ee7df"/>
+      <stop offset="50%" stop-color="#b490ff"/>
+      <stop offset="100%" stop-color="#7dd3fc"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#f3f4f6" stop-opacity="0.95"/>
+    </linearGradient>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font: 700 40px/1.1 "Segoe UI", Roboto, Arial, sans-serif; fill:#0f172a; }
+      .subtitle { font: 500 18px/1 "Segoe UI", Roboto, Arial, sans-serif; fill:#0f172a; opacity:0.85; }
+      .names { font: 600 16px/1 "Segoe UI", Roboto, Arial, sans-serif; fill:#0f172a; }
+      .small { font: 400 13px/1 "Segoe UI", Roboto, Arial, sans-serif; fill:#0f172a; opacity:0.75; }
+    </style>
+  </defs>
+
+  <!-- Fondo degradado suave -->
+  <rect width="1200" height="320" rx="0" fill="url(#bgGrad)"/>
+
+  <!-- Tarjeta central -->
+  <g transform="translate(60,40)" filter="url(#softShadow)">
+    <rect width="1080" height="240" rx="18" fill="url(#cardGrad)"/>
+    <!-- Decoración derecha: formas abstractas -->
+    <g transform="translate(820,20)">
+      <circle cx="60" cy="40" r="48" fill="#fde68a" opacity="0.7"/>
+      <circle cx="120" cy="120" r="36" fill="#fecaca" opacity="0.8"/>
+      <rect x="40" y="80" width="90" height="18" rx="9" fill="#e9d5ff" opacity="0.9"/>
+    </g>
+
+    <!-- Icono calculadora a la izquierda -->
+    <g transform="translate(40,36)">
+      <rect x="0" y="0" width="160" height="200" rx="18" fill="#0f172a"/>
+      <rect x="12" y="18" width="136" height="40" rx="6" fill="#111827" opacity="0.9"/>
+      <rect x="22" y="26" width="116" height="24" rx="4" fill="#ffffff" opacity="0.97"/>
+      <!-- Botones -->
+      <g transform="translate(16,70)">
+        <rect x="0" y="0" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="46" y="0" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="92" y="0" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="0" y="46" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="46" y="46" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="92" y="46" width="36" height="36" rx="8" fill="#f97316"/>
+        <rect x="0" y="92" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="46" y="92" width="36" height="36" rx="8" fill="#1f2937"/>
+        <rect x="92" y="92" width="36" height="36" rx="8" fill="#10b981"/>
+      </g>
+      <!-- Brillo -->
+      <ellipse cx="120" cy="12" rx="40" ry="10" fill="#ffffff" opacity="0.06"/>
+    </g>
+
+    <!-- Texto: título y subtítulo -->
+    <g transform="translate(230,60)">
+      <text class="title">Calculadora Pro</text>
+      <text x="0" y="52" class="subtitle">rápida · bonita · confiable</text>
+
+      <!-- Línea divisoria -->
+      <rect x="0" y="70" width="520" height="1" fill="#e6e6e6" opacity="0.9"/>
+
+      <!-- Texto pequeño con nombres -->
+      <text x="0" y="105" class="small">desarrollado por</text>
+      <text x="0" y="130" class="names">Giuseppe • Juliana • Tarazona</text>
+
+      <!-- Pequeñas burbujas / adornos -->
+      <g transform="translate(420,-10)">
+        <circle cx="24" cy="24" r="14" fill="#fef3c7f2" opacity="0.95"/>
+        <circle cx="56" cy="52" r="10" fill="#c7f9ff" opacity="0.95"/>
+      </g>
+    </g>
+  </g>
+</svg>
