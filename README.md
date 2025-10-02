@@ -141,7 +141,7 @@ public void additionWorks() {
 
 ## 📜 Licencia
 
-Este proyecto usa **MIT License**. Consulta la licencia completa: [LICENSE](./LICENSE)
+Este proyecto usa **MIT License**. Consulta la licencia completa: [LICENSE](./LICENSE.txt)
 
 
 ```text
