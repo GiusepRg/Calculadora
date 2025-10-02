@@ -20,10 +20,6 @@ Calculadora Pro es una aplicación simple y bonita para realizar operaciones ari
 * Accesible vía teclado (atajos numéricos y Enter para =).
 * Diseño moderno y limpio con animaciones sutiles.
 
-# Demo
-
-Puedes ver una demo en: `https://tu-dominio-ejemplo.com` *(reemplaza con tu URL de despliegue cuando esté disponible)*
-
 # Capturas
 
 > Inserta tus imágenes en la carpeta `assets/` y referencia aquí:
@@ -35,10 +31,7 @@ Puedes ver una demo en: `https://tu-dominio-ejemplo.com` *(reemplaza con tu URL 
 
 # Tecnologías
 
-* HTML5
-* CSS3 (Flexbox / Grid)
-* JavaScript (ES6+)
-* Opcional: SASS / Webpack / Vite para builds
+* JAVA
 
 # Estructura del proyecto
 
@@ -60,17 +53,10 @@ calculadora-pro/
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/calculadora-pro.git
-cd calculadora-pro
+git clone https://github.com/tu-usuario/Calculadora.git
+cd Calculadora
 ```
 
-2. Abre `src/index.html` en tu navegador, o sirve el proyecto con un servidor local:
-
-```bash
-# si tienes Python 3
-python -m http.server 5500
-# luego abre http://localhost:5500/src
-```
 
 # Uso
 
@@ -118,17 +104,7 @@ python -m http.server 5500
 
 # Pruebas
 
-* Se recomienda añadir tests unitarios (p. ej. con Jest para la lógica JS).
-* Pruebas manuales de UX en móvil y escritorio.
-
-# Despliegue
-
-* Opciones rápidas: GitHub Pages, Netlify o Vercel.
-* Pasos generales:
-
-  1. Subir a un repo público.
-  2. Conectar el repo a Netlify / Vercel o habilitar Pages en GitHub.
-  3. Publicar.
+* Pruebas manuales de UX en escritorio.
 
 # Licencia
 
@@ -141,5 +117,4 @@ Proyecto bajo la licencia **MIT**. (Añade archivo `LICENSE` con texto MIT si de
 
 ---
 
-¡Gracias por probar Calculadora Pro! ✨
-Si quieres, te hago una versión del README adaptada a un lenguaje (React, Python, Java) o con secciones traducidas al inglés. ¿Deseas eso?
+¡Gracias por probar Calculadora! ✨
