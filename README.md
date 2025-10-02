@@ -1,120 +1,186 @@
 # 🧮 Calculadora Pro — Proyecto Final
 
-> Una calculadora limpia, accesible y elegante, creada como proyecto educativo.
-> Hecha con cariño por Giuseppe, Juliana y Tarazona.
+> Una calculadora simple y funcional desarrollada **solo en Java**.
+> Hecha por **Giuseppe**, **Juliana** y **Tarazona**.
 
 ---
 
-![calculadora-banner](/assets/banner.svg/)
+![calculadora-banner](./assets/banner.svg)
 
-# Descripció n
+# Descripción
 
-Calculadora Pro es una aplicación simple y bonita para realizar operaciones aritméticas básicas y algunas funciones avanzadas (por ejemplo: porcentaje, raíz cuadrada y memoria). Ideal para usar en el navegador o como punto de partida para agregar más funciones.
+Calculadora Pro es una aplicación Java ligera para realizar operaciones aritméticas básicas y algunas utilidades prácticas (porcentaje, raíz cuadrada, cambio de signo y memoria). Pensada para usarse desde la consola o como base para una futura GUI, pero ahora **solo Java**, sin frameworks ni herramientas externas.
 
 # Características principales
 
-* Operaciones básicas: `+`, `-`, `×`, `÷`.
-* Soporte de punto decimal y manejo correcto de precedencia (si aplica).
-* Funciones extra: `%`, `√`, `+/-` (cambiar signo), `M+`, `M-`, `MC`, `MR`.
-* Interfaz responsiva (móvil y desktop).
-* Accesible vía teclado (atajos numéricos y Enter para =).
-* Diseño moderno y limpio con animaciones sutiles.
-
-# Capturas
-
-> Inserta tus imágenes en la carpeta `assets/` y referencia aquí:
-
-```markdown
-![Pantalla principal](./assets/screenshot-1.png)
-![Modo oscuro](./assets/screenshot-2.png)
-```
+* Sumas, restas, multiplicaciones y divisiones.
+* Punto decimal.
+* Porcentaje (`%`), raíz cuadrada (`sqrt`), cambio de signo (`+/-`).
+* Memoria simple: `M+`, `M-`, `MR`, `MC`.
+* Lógica separada en clases para facilitar lectura y mantenimiento.
+* Uso sencillo desde consola (no requiere Maven/Gradle).
 
 # Tecnologías
 
-* JAVA
+* Java 11+ (funciona con Java 17 también)
 
-# Estructura del proyecto
+# Estructura del proyecto (sugerida)
 
 ```
 calculadora-pro/
 ├─ assets/
-│  ├─ banner.png
-│  └─ screenshot-1.png
+│  └─ banner.svg
 ├─ src/
-│  ├─ index.html
-│  ├─ styles.css
-│  └─ app.js
+│  └─ com/
+│     └─ calculadora/
+│        ├─ Calculator.java   <-- lógica
+│        └─ Main.java         <-- launcher CLI
 ├─ README.md
 └─ LICENSE
 ```
 
-# Instalación (rápida)
+# Código mínimo (lista para copiar)
 
-1. Clona el repositorio:
+```java
+// src/com/calculadora/Calculator.java
+package com.calculadora;
 
-```bash
-git clone https://github.com/tu-usuario/Calculadora.git
-cd Calculadora
+public class Calculator {
+    private double memory = 0.0;
+
+    public double add(double a, double b) { return a + b; }
+    public double sub(double a, double b) { return a - b; }
+    public double mul(double a, double b) { return a * b; }
+    public double div(double a, double b) {
+        if (b == 0) throw new ArithmeticException("División por cero");
+        return a / b;
+    }
+
+    public double percent(double value) { return value / 100.0; }
+    public double sqrt(double value) {
+        if (value < 0) throw new ArithmeticException("Raíz de número negativo");
+        return Math.sqrt(value);
+    }
+    public double changeSign(double value) { return -value; }
+
+    // memoria
+    public void memoryClear() { memory = 0.0; }
+    public void memoryAdd(double v) { memory += v; }
+    public void memorySub(double v) { memory -= v; }
+    public double memoryRecall() { return memory; }
+}
 ```
 
+```java
+// src/com/calculadora/Main.java
+package com.calculadora;
 
-# Uso
+import java.util.Scanner;
 
-* Haz clic en los botones o usa el teclado:
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Calculadora Pro (CLI) — escribe 'help' para comandos, 'exit' para salir.");
+        while (true) {
+            System.out.print("> ");
+            String line = sc.nextLine().trim();
+            if (line.isEmpty()) continue;
+            if (line.equalsIgnoreCase("exit")) break;
+            if (line.equalsIgnoreCase("help")) {
+                System.out.println("Ejemplos:\n 12 + 7.5\n sqrt 9\n M+ 5\n MR\n MC\n exit");
+                continue;
+            }
+            try {
+                String[] parts = line.split("\\s+");
+                if (parts[0].equalsIgnoreCase("sqrt") && parts.length==2) {
+                    double x = Double.parseDouble(parts[1]);
+                    System.out.println("Resultado: " + calc.sqrt(x));
+                } else if ((parts[0].equalsIgnoreCase("M+") || parts[0].equalsIgnoreCase("M-")) && parts.length==2) {
+                    double x = Double.parseDouble(parts[1]);
+                    if (parts[0].equalsIgnoreCase("M+")) calc.memoryAdd(x); else calc.memorySub(x);
+                    System.out.println("Memoria: " + calc.memoryRecall());
+                } else if (parts[0].equalsIgnoreCase("MR")) {
+                    System.out.println("Memoria: " + calc.memoryRecall());
+                } else if (parts[0].equalsIgnoreCase("MC")) {
+                    calc.memoryClear();
+                    System.out.println("Memoria limpiada.");
+                } else if (parts.length==3) {
+                    double a = Double.parseDouble(parts[0]);
+                    String op = parts[1];
+                    double b = Double.parseDouble(parts[2]);
+                    double res;
+                    switch(op) {
+                        case "+": res = calc.add(a,b); break;
+                        case "-": res = calc.sub(a,b); break;
+                        case "*": res = calc.mul(a,b); break;
+                        case "/": res = calc.div(a,b); break;
+                        case "%": res = calc.percent(b); break;
+                        default: throw new IllegalArgumentException("Operador no soportado");
+                    }
+                    System.out.println("Resultado: " + res);
+                } else {
+                    System.out.println("Entrada no reconocida. Usa 'help' para ver ejemplos.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        sc.close();
+        System.out.println("Adiós 👋");
+    }
+}
+```
 
-  * Números: `0–9`
-  * Punto decimal: `.`
-  * Operaciones: `+ - * /`
-  * Igual: `Enter` o `=`
-  * Borrar: `Esc` o `C` (según la implementación)
-* Ejemplo:
+# Compilar y ejecutar (sin herramientas externas)
 
-  1. Escribe `12`
-  2. Presiona `+`
-  3. Escribe `7.5`
-  4. Presiona `Enter` → Resultado `19.5`
+Abre terminal en la carpeta raíz del proyecto:
 
-# Atajos de teclado sugeridos
+```bash
+# compilar
+javac -d out src/com/calculadora/*.java
 
-* `Enter` → `=`
-* `Backspace` → borrar último dígito
-* `Esc` → limpiar todo
-* `M` → abrir opciones de memoria (o usar botones dedicados)
+# ejecutar
+java -cp out com.calculadora.Main
+```
 
-# Buenas prácticas implementadas
+(Esto crea la carpeta `out` con las clases y ejecuta la aplicación CLI.)
 
-* Manejo de errores (división por cero, entradas inválidas).
-* Input sanitizado antes de evaluar operaciones.
-* Animaciones y foco visible para accesibilidad.
+# Uso (ejemplo)
 
-# Cómo contribuir
+```
+> 12 + 7.5
+Resultado: 19.5
 
-¡Bienvenidos los PRs! Sugerencias:
+> M+ 10
+Memoria: 10.0
 
-1. Forkea el repositorio.
-2. Crea una rama con tu mejora: `git checkout -b feat/nombre-mejora`
-3. Haz commits claros y descriptivos.
-4. Abre un Pull Request describiendo los cambios.
+> MR
+Memoria: 10.0
+
+> sqrt 16
+Resultado: 4.0
+```
+
+# Buenas prácticas que seguimos
+
+* Lógica separada de la interfaz.
+* Manejo simple de excepciones (división por cero, raíz de negativo).
+* Código legible y fácil de extender.
 
 # Roles del equipo
 
-* **Giuseppe** — Frontend / Diseño UI
-* **Juliana** — Lógica de operaciones / Validaciones
-* **Tarazona** — Integración, pruebas y despliegue
+* **Giuseppe** — diseño y estructura del proyecto
+* **Juliana** — lógica y validaciones (Calculator.java)
+* **Tarazona** — pruebas manuales y empaquetado
 
-# Pruebas
+# Cómo contribuir (rápido)
 
-* Pruebas manuales de UX en escritorio.
+1. Fork / clona el repo.
+2. Crea rama: `git checkout -b feat/nombre`
+3. Haz cambios y PR con descripción clara.
 
 # Licencia
 
-Proyecto bajo la licencia **MIT**. (Añade archivo `LICENSE` con texto MIT si deseas publicar.)
-
-# Contacto
-
-* Equipo: Giuseppe, Juliana y Tarazona
-  Si quieres colaborar o reportar un bug, abre un issue en el repositorio.
-
+Proyecto bajo **MIT**. 
 ---
-
-¡Gracias por probar Calculadora! ✨
