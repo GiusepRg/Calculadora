@@ -123,12 +123,11 @@ public void additionWorks() {
 
 ## 👥 Roles (Trabajo académico)
 
-| Integrante | Rol (Análisis y Diseño de Sistemas)          |
-| ---------- | -------------------------------------------- |
-| Giuseppe   | Arquitectura y organización del proyecto     |
-| Juliana    | Implementación de operaciones y validaciones |
-| Tarazona   | Interfaz CLI, parser y pruebas               |
-
+| Integrante | Rol | Foto |
+|---:|:--|:---|
+| Giuseppe | Arquitectura y organización del proyecto | ![Giuseppe](./assets/team/Giuseppe.jpg) |
+| Juliana  | Implementación de operaciones y validaciones | ![Juliana](./assets/team/juliana.jpg) |
+| Tarazona | Interfaz CLI, parser y pruebas | ![Tarazona](./assets/team/tarazona.jpg) |
 ---
 
 ## 🛠 Cómo añadir una operación 
