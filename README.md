@@ -138,7 +138,10 @@ public void additionWorks() {
 3. Probar desde CLI — sin tocar código existente.
 
 ---
-
+| Integrante | Rol | Foto |
+|---:|:--|:---|
+| Giuseppe | Arquitectura y organización del proyecto | ![Giuseppe](./assets/team/giuseppe.jpg) |
+| Juliana  | Implementación de operaciones y validaciones | ![Juliana](./assets/team/juliana.jpg) |
 ## 📜 Licencia
 
 Este proyecto usa **MIT License**. Consulta la licencia completa: [LICENSE](./LICENSE.txt)
