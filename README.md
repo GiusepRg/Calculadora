@@ -5,7 +5,7 @@
 
 ---
 
-![calculadora-banner](./assets/banner.png)
+![calculadora-banner](/assets/banner.svg/)
 
 # Descripció n
 
