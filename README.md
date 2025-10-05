@@ -125,9 +125,9 @@ public void additionWorks() {
 
 | Integrante | Rol | Foto |
 |---:|:--|:---|
-| Giuseppe | Arquitectura y organización del proyecto | ![Giuseppe](./assets/team/Giuseppe.jpg) |
-| Juliana  | Implementación de operaciones y validaciones | ![Juliana](./assets/team/juliana.jpg) |
-| Tarazona | Interfaz CLI, parser y pruebas | ![Tarazona](./assets/team/tarazona.jpg) |
+| Giuseppe | Arquitectura y organización del proyecto | <img src="./assets/team/Giuseppe.jpg" alt="Giuseppe" width="120" height="120"> |
+| Juliana  | Implementación de operaciones y validaciones | <img src="./assets/team/July.jpg" alt="Juliana" width="120" height="120"> |
+| Tarazona | Interfaz CLI, parser y pruebas | <img src="./assets/team/tarazona.jpg" alt="Tarazona" width="120" height="120"> |
 ---
 
 ## 🛠 Cómo añadir una operación 
